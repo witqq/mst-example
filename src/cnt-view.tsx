@@ -1,26 +1,25 @@
 import {CntStore} from "./cnt-store";
-import {observer, inject} from "mobx-react";
+import {observer} from "mobx-react";
 import * as React from "react";
 import {Component} from "react";
 import {autobind} from "core-decorators";
-
-export interface CntViewProps {
-  cntStore?: CntStore;
-}
+import {injectStore} from "./inject-store";
 
 @observer
-@inject("cntStore")
-export class CntView extends Component<CntViewProps> {
+export class CntView extends Component {
+
+  @injectStore("cntStore")
+  cntStore: CntStore;
 
   @autobind
   increment() {
-    this.props.cntStore.increment();
+    this.cntStore.increment();
   }
 
   render() {
     return (
       <div>
-        cnt = {this.props.cntStore.count}
+        cnt = {this.cntStore.count}
         <br/>
         <button onClick={this.increment}>+</button>
       </div>
