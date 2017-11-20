@@ -1,5 +1,5 @@
 import {CntStore} from "./cnt-store";
-import {observer} from "mobx-react";
+import {observer, inject} from "mobx-react";
 import * as React from "react";
 import {Component} from "react";
 import {autobind} from "core-decorators";
@@ -9,6 +9,7 @@ export interface CntViewProps {
 }
 
 @observer
+@inject("cntStore")
 export class CntView extends Component<CntViewProps> {
 
   @autobind
